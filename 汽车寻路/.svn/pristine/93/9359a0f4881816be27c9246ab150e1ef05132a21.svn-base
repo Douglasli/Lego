@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Shapes;
+
+namespace WpfApplication1
+{
+    class Map
+    {
+        public Map()
+        {
+            Size = new Size(500, 500);
+
+            Fixtures = new List<RectangleGeometry>();
+            Fixtures.Add(new RectangleGeometry(new Rect(470, 0, 30, 200)));
+            Fixtures.Add(new RectangleGeometry(new Rect(470, 300, 30, 200)));
+            //Fixtures.Add(new RectangleGeometry(new Rect(350, 100, 30, 300)));
+
+
+            foreach (var geometry in Fixtures)
+            {
+                geometry.Freeze();
+            }
+        }
+
+        
+
+
+        public Size Size { get; private set; }
+
+        public ICollection<RectangleGeometry> Fixtures { get; private set; }
+
+    }
+}

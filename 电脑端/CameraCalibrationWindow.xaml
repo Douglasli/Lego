@@ -1,0 +1,26 @@
+﻿<Window x:Class="Gqqnbig.Lego.CameraCalibrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CameraCalibrationWindow" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Name="Main_Picturebox" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
+
+        <Button Name="Start_BTN" Grid.Row="0" Grid.Column="1" Content="Start"
+                HorizontalAlignment="Center" Padding="10,5" Click="startButton_Click"/>
+        <Button Name="addButton" Grid.Row="1" Grid.Column="1" Content="Add"
+                HorizontalAlignment="Center" Padding="10,5" Click="addButton_Click"/>
+
+        <Image Name="Sub_PicturBox" Grid.Row="1" Grid.Column="1"/>
+
+    </Grid>
+</Window>

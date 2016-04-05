@@ -1,0 +1,13 @@
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\Bin\Debug\ApplicationIcon.png
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\Bin\Debug\Background.png
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\Bin\Debug\sdkBasicCameraCS.dll
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\Bin\Debug\sdkBasicCameraCS.pdb
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\Bin\Debug\AppManifest.xaml
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\Bin\Debug\Properties\WMAppManifest.xml
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\Bin\Debug\sdkBasicCameraCS_Debug_AnyCPU.xap
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\obj\Debug\App.g.cs
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\obj\Debug\MainPage.g.cs
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\obj\Debug\sdkBasicCameraCS.g.resources
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\obj\Debug\sdkBasicCameraCS.dll
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\obj\Debug\sdkBasicCameraCS.pdb
+C:\Users\了\Downloads\Basic Camera Sample\C#\sdkBasicCameraCS\obj\Debug\XapCacheFile.xml

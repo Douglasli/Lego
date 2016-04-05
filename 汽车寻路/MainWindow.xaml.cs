@@ -1,0 +1,165 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace WpfApplication1
+{
+    /// <summary>
+    /// MainWindow.xaml 的交互逻辑
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private readonly Map map;
+        Car car;
+        private readonly CarPainter painter;
+        //private readonly Task task;
+
+        private readonly ParkingSolver solver;
+        private Point endPoint;
+        private int endOrientation;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            endPoint = new Point(7.75, 135);
+            endOrientation = 0;
+
+            //task = new Task(new Point(100, 100), 180, endPoint, endOrientation);
+            car = new Car(new Point(27.75, 214.4), 180);
+            map = new Map();
+
+            solver = new ParkingSolver(2, 10, endPoint, endOrientation, map);
+
+
+            painter = new CarPainter(canvas);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            painter.Draw(map);
+            painter.Draw(car);
+
+            Car endCar = new Car(endPoint, endOrientation);
+            painter.DrawEndPose(endCar);
+
+
+        }
+
+
+
+        private void executeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            double distance;
+            if (double.TryParse(distanceTextBox.Text, out distance) == false)
+            {
+                distanceTextBox.Focus();
+                System.Media.SystemSounds.Beep.Play();
+                return;
+            }
+            // ReSharper disable PossibleInvalidOperationException
+            if (forwardRadioButton.IsChecked.Value)
+                car = car.Forward(distance);
+            else if (backwardRadioButton.IsChecked.Value)
+                car = car.Backward(distance);
+            else if (forwardLeftRadioButton.IsChecked.Value)
+                car = car.ForwardLeft(distance);
+            else if (forwardRightRadioButton.IsChecked.Value)
+                car = car.ForwardRight(distance);
+            else if (backwardLeftRadioButton.IsChecked.Value)
+                car = car.BackwardLeft(distance);
+            else if (backwardRightRadioButton.IsChecked.Value)
+                car = car.BackwardRight(distance);
+
+            // ReSharper restore PossibleInvalidOperationException
+            painter.Draw(car);
+            Debug.WriteLine("{0}, {1}, {2}", car.Center.X, car.Center.Y, car.Orientation);
+
+            if (historyListBox.SelectedIndex > -1)
+            {
+                if (historyListBox.SelectedIndex < historyListBox.Items.Count - 1)
+                    historyListBox.SelectedIndex++;
+                else
+                {
+                    historyListBox.SelectedIndex = -1;
+                }
+            }
+        }
+
+        private void solveButton_Click(object sender, RoutedEventArgs e)
+        {
+            DebugWindow w = new DebugWindow(solver);
+
+            w.Show();
+
+            //return;
+
+
+            Task<LinkedList<Action>> task = new Task<LinkedList<Action>>(o => solver.Solve((Car)o), car);
+
+            task.ContinueWith(t =>
+            {
+                if (t.Status == TaskStatus.RanToCompletion)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+                    Dispatcher.BeginInvoke(new Action<LinkedList<Action>>(l => historyListBox.ItemsSource = l), t.Result);
+                }
+            });
+            task.Start();
+
+            //LinkedList<Action> list = solver.Solve(car);
+
+            //historyListBox.ItemsSource = list;
+        }
+
+        private void historyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 0)
+            {
+                distanceTextBox.Text = string.Empty;
+                return;
+            }
+
+
+            Action action = (Action)e.AddedItems[0];
+            switch (action.ActionDirection)
+            {
+                case ActionDirection.Forward:
+                    forwardRadioButton.IsChecked = true;
+                    break;
+                case ActionDirection.ForwardLeft:
+                    forwardLeftRadioButton.IsChecked = true;
+                    break;
+                case ActionDirection.ForwardRight:
+                    forwardRightRadioButton.IsChecked = true;
+                    break;
+                case ActionDirection.Backward:
+                    backwardRadioButton.IsChecked = true;
+                    break;
+                case ActionDirection.BackwardLeft:
+                    backwardLeftRadioButton.IsChecked = true;
+                    break;
+                case ActionDirection.BackwardRight:
+                    backwardRightRadioButton.IsChecked = true;
+                    break;
+            }
+
+            distanceTextBox.Text = action.Parameter.ToString();
+        }
+    }
+}

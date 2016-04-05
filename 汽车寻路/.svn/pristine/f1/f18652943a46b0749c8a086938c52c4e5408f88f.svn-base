@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApplication1.DebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DebugWindow" Height="300" Width="300" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas Name="grid" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
+        
+        <TextBox Grid.Row="0" Grid.Column="1" Height="20" HorizontalAlignment="Stretch"
+                 Text="{Binding ElementName=layerScrollBar, Path=Value, Mode=TwoWay}"/>
+        <Slider Name="layerScrollBar" Grid.Row="1" Grid.Column="1" Orientation="Vertical" 
+                TickPlacement="BottomRight" IsDirectionReversed="True" TickFrequency="1" IsSnapToTickEnabled="True" 
+                ValueChanged="layerScrollBar_ValueChanged"/>
+        
+        <Button Name="pauseButton" Grid.Row="2" Grid.Column="1" Content="暂停" Click="pauseButton_Click"/>
+
+        <!--<Slider  Grid.Row="1" Grid.Column="2" Maximum="50" TickFrequency="10" TickPlacement="Both"/>-->
+        <!--<Canvas Name="layerCanvas"/>-->
+        <!--<Button Height="150" VerticalAlignment="Top" Opacity="0.5" Margin="0"/>
+        <Button Height="150" VerticalAlignment="Top" Opacity="0.5" Margin="0,50,0,0"/>
+        <Button Height="150" VerticalAlignment="Top" Opacity="0.5" Margin="0,100,0,0"/>
+        <Button Height="150" VerticalAlignment="Top" Opacity="0.5" Margin="0,150,0,0"/>-->
+    
+    </Grid>
+</Window>

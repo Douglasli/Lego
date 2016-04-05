@@ -1,0 +1,36 @@
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\乐高停车机器人.csprojResolveAssemblyReference.cache
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\乐高停车机器人_Content.g.cs
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\乐高停车机器人_MarkupCompile.cache
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\乐高停车机器人.g.resources
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\WpfApplication1.Properties.Resources.resources
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\乐高停车机器人.csproj.GenerateResource.Cache
+D:\Source Code\CSharp\本地程序\乐高停车机器人\bin\Debug\乐高停车机器人.exe
+D:\Source Code\CSharp\本地程序\乐高停车机器人\bin\Debug\乐高停车机器人.pdb
+D:\Source Code\CSharp\本地程序\乐高停车机器人\bin\Debug\LibUsbDotNet.dll
+D:\Source Code\CSharp\本地程序\乐高停车机器人\bin\Debug\MonoBrick.dll
+D:\Source Code\CSharp\本地程序\乐高停车机器人\bin\Debug\MonoBrick.xml
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\乐高停车机器人.exe
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\乐高停车机器人.pdb
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\Window1.baml
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\Window1.g.cs
+D:\Source Code\CSharp\本地程序\乐高停车机器人\obj\Debug\App.g.cs
+D:\Source Code\CSharp\本地程序\乐高停车机器人\bin\Debug\PortableClassLibrary1.dll
+D:\Source Code\CSharp\本地程序\乐高停车机器人\bin\Debug\PortableClassLibrary1.pdb
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\乐高停车机器人.exe
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\乐高停车机器人.pdb
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\bin\Debug\乐高停车机器人.exe
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\bin\Debug\乐高停车机器人.pdb
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\bin\Debug\LibUsbDotNet.dll
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\bin\Debug\MonoBrick.dll
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\bin\Debug\PortableClassLibrary1.dll
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\bin\Debug\PortableClassLibrary1.pdb
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\bin\Debug\MonoBrick.xml
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\乐高停车机器人.csprojResolveAssemblyReference.cache
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\Window1.baml
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\Window1.g.cs
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\App.g.cs
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\乐高停车机器人_Content.g.cs
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\乐高停车机器人_MarkupCompile.cache
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\乐高停车机器人.g.resources
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\WpfApplication1.Properties.Resources.resources
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高停车机器人\obj\Debug\乐高停车机器人.csproj.GenerateResource.Cache

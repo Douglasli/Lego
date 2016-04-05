@@ -1,0 +1,51 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="sdkBasicCameraCS.ExtendedSplash"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="/SplashImage.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ProgressBar Name="progressBar" Grid.Row="0"
+                     VerticalAlignment="Bottom" Height="30" IsIndeterminate="True"/>
+        <Grid Grid.Row="1" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Ntp Time" Margin="10,0,0,0"/>
+                <TextBlock Name="txtCurrentTime" Grid.Row="0" Grid.Column="1"   />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="System Time" Margin="10,0,0,0"/>
+                <TextBlock Name="txtSystemTime" Grid.Row="1" Grid.Column="1" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Difference" Margin="10,0,0,0"/>
+                <TextBlock Name="differenceTextBlock" Grid.Row="2" Grid.Column="1" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

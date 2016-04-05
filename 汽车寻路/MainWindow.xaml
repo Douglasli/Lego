@@ -1,0 +1,73 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MapWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Viewbox Grid.Row="0" Grid.RowSpan="6" Grid.Column="0">
+            <Canvas Name="canvas"/>
+        </Viewbox>
+
+
+        <DockPanel Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Name="setDestButton" x:FieldModifier="public" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Set destination" Margin="5"
+                        />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="x" VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="xTextBox" x:FieldModifier="public"  Grid.Row="1" Grid.Column="1" MinWidth="30" Margin="5"
+                         Text="7.75"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="y" VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="yTextBox" x:FieldModifier="public"  Grid.Row="2" Grid.Column="1" MinWidth="30" Margin="5"
+                         Text="135"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Orientation" VerticalAlignment="Center" Margin="5"/>
+                <TextBox Name="orientationTextBox" x:FieldModifier="public"  Grid.Row="3" Grid.Column="1" MinWidth="30" Margin="5"
+                         Text="180"/>
+            </Grid>
+
+            <Button Name="solveButton" DockPanel.Dock="Bottom" Content="Solve" Margin="5" Click="solveButton_Click"/>
+            <ListBox Name="historyListBox" SelectionChanged="historyListBox_SelectionChanged"/>
+            <!--<Button Name="executeButton" Grid.Row="4"  Grid.Column="1" Grid.ColumnSpan="3" Content="执行" Margin="5" Click="executeButton_Click"/>-->
+
+        </DockPanel>
+        
+        <RadioButton Name="forwardLeftRadioButton" Grid.Row="1" Grid.Column="1" Content="Forward Left" Margin="5"/>
+        <RadioButton Name="forwardRadioButton" Grid.Row="1" Grid.Column="2" Content="Forward" Margin="5"/>
+        <RadioButton Name="forwardRightRadioButton" Grid.Row="1" Grid.Column="3" Content="Forward Right" Margin="5"/>
+
+        <RadioButton Name="backwardLeftRadioButton" Grid.Row="2" Grid.Column="1" Content="Backward Left" Margin="5"/>
+        <RadioButton Name="backwardRadioButton" Grid.Row="2" Grid.Column="2" Content="Backward" Margin="5"/>
+        <RadioButton Name="backwardRightRadioButton" Grid.Row="2" Grid.Column="3" Content="Backward Right" Margin="5"/>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Distance" VerticalAlignment="Center"/>
+            <TextBox Name="distanceTextBox" Width="80" MaxLines="1"/>
+        </StackPanel>
+
+        <Button Name="executeButton" Grid.Row="4"  Grid.Column="1" Grid.ColumnSpan="3" Content="Execute" Margin="5" Click="executeButton_Click"/>
+        
+    </Grid>
+</Window>

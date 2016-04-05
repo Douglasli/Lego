@@ -1,0 +1,181 @@
+﻿<Window x:Class="Gqqnbig.Lego.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lego="clr-namespace:Gqqnbig.Lego"
+        Title="Lego Controller" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Window.Resources>
+        <RoutedCommand x:Key="TurnLeftCommand"  />
+        <RoutedCommand x:Key="TurnRightCommand" />
+        <RoutedCommand x:Key="SpeedUpCommand" />
+        <RoutedCommand x:Key="SpeedDownCommand" />
+        <RoutedCommand x:Key="BrakeCommand" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Left" Command="{StaticResource TurnLeftCommand}"/>
+        <KeyBinding Key="Right" Command="{StaticResource TurnRightCommand}"/>
+        <KeyBinding Key="Up" Command="{StaticResource SpeedUpCommand}"/>
+        <KeyBinding Key="Down" Command="{StaticResource SpeedDownCommand}"/>
+        <KeyBinding Key="B" Command="{StaticResource BrakeCommand}"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource TurnLeftCommand}" CanExecute="TurnLeftCommand_CanExecute" Executed="TurnLeftCommand_Executed"/>
+        <CommandBinding Command="{StaticResource TurnRightCommand}" CanExecute="TurnRightCommand_CanExecute" Executed="TurnRightCommand_Executed"/>
+        <CommandBinding Command="{StaticResource SpeedUpCommand}" Executed="SpeedUpCommand_Executed"/>
+        <CommandBinding Command="{StaticResource SpeedDownCommand}" Executed="SpeedDownCommand_Executed"/>
+        <CommandBinding Command="{StaticResource BrakeCommand}" Executed="BrakeCommand_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition MaxWidth="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,5,0,0" >
+            <TextBlock Text="Network" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <ComboBox Name="interfaceComboBox" MinWidth="120"  Margin="0,0,5,0"/>
+            <Button Content="Listen" Click="listenButton_Click" Margin="0,0,5,0">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedItem, ElementName=interfaceComboBox}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Name="nextEventButton" Click="nextEventButton_Click" Content="Raise Next Event" Visibility="Hidden"  />
+        </StackPanel>
+
+        <StackPanel  Grid.Row="1" Grid.Column="0">
+            <TextBlock x:Name="frontSpaceTextBlock" HorizontalAlignment="Center"/>
+            <TextBlock Name="imageIntervalTextBlock" HorizontalAlignment="Center"/>
+
+            <!--<TextBlock Grid.Row="0" Grid.Column="0" Text="Imaging Distance"/>
+            <Slider Name="slider" Grid.Row="0" Grid.Column="1" Maximum="600" Value="427.96"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Value, ElementName=slider, StringFormat=f3}"/>-->
+
+            <UniformGrid>
+                <CheckBox Name="saveToFileCheckBox" Content="Save to files"
+                          IsChecked="{Binding Path=IsChecked, ElementName=getBackgroundCheckBox, Mode=OneWay}"
+                          Checked="saveToFileCheckBox_Checked" Unchecked="saveToFileCheckBox_Checked"/>
+                <CheckBox Name="getBackgroundCheckBox" Content="Find background" Unchecked="getBackgroundCheckBox_Unchecked" />
+                <CheckBox Name="showGridCheckBox" Content="Show distance grid"/>
+            </UniformGrid>
+
+
+            <Image x:Name="imageControl" StretchDirection="DownOnly" Stretch="Uniform"/>
+        </StackPanel>
+
+        <TextBlock Name="currentTimeTextBlock" Grid.Row="0" Grid.Column="1" Text="111"/>
+        
+        <ListBox Name="eventListBox" Grid.Row="1" Grid.Column="1"
+                 ScrollViewer.CanContentScroll="False" >
+            <ListBox.Resources>
+                <lego:EmguCVImageConverter  x:Key="emguCVImageConverter"/>
+                <lego:EqualsConverter x:Key="equalsConverter"/>
+                <Style x:Key="colorStyle">
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource equalsConverter}">
+                                    <Binding Path="Tick" />
+                                    <Binding Path="Text" ElementName="currentTimeTextBlock"/>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="TextBlock.Foreground" Value="Red"/>
+                            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                
+                <DataTemplate DataType="{x:Type lego:MotorSpeedChangedEventArgs}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Tick}" Style="{StaticResource colorStyle}"/>
+                        <TextBlock Text="{Binding LeftSpeed, StringFormat='L={0}'}"/>
+                        <TextBlock Text="{Binding RightSpeed, StringFormat='R={0}'}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type lego:ImageAvailableEventArgs}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Tick}" Style="{StaticResource colorStyle}"/>
+                        <Image MaxWidth="100" Source="{Binding Image,Converter={StaticResource emguCVImageConverter}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.Resources>
+        </ListBox>
+
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+            <TextBlock Text="Method" Margin="0,0,5,0" VerticalAlignment="Center"/>
+            <ComboBox Name="connectionComboBox" MinWidth="80" Margin="0,0,5,0"/>
+            <Button Content="Connect" Click="connectButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedItem, ElementName=connectionComboBox}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Run" Click="runButton_Click" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+            <TextBlock Text="Motor A, B control speed.&#xA;Motor C controls steering." Margin="5"/>
+            <Grid Name="buttonsGrid" IsEnabled="False">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="5px"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="leftSteeringMaxTextBlock" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" />
+                <TextBlock x:Name="rightSteeringMaxTextBlock" Grid.Row="0" Grid.Column="4" Margin="0,10,0,0" />
+
+                <TextBlock x:Name="leftWheelSpeedTextBlock" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" Source="Steering wheel.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="{Binding SteeringAngle, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock x:Name="rightWheelSpeedTextBlock" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center" />
+
+                <TextBlock x:Name="speedTextBlock" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center"
+					Text="{Binding MidSpeed, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+
+                <Button Grid.Row="3" Grid.Column="2" Content="&#233;" FontFamily="Wingdings" Command="{StaticResource SpeedUpCommand}"/>
+                <Button Grid.Row="4" Grid.Column="0" Content="B" Command="{StaticResource BrakeCommand}"/>
+                <Button Grid.Row="4" Grid.Column="1" Content="&#231;" FontFamily="Wingdings"  Command="{StaticResource TurnLeftCommand}" />
+                <Button Grid.Row="4" Grid.Column="2" Content="&#234;" FontFamily="Wingdings"  Command="{StaticResource SpeedDownCommand}"/>
+                <Button Grid.Row="4" Grid.Column="3" Content="&#232;" FontFamily="Wingdings" Command="{StaticResource TurnRightCommand}"/>
+                <Button Grid.Row="4" Grid.Column="4" Content="Reset" Click="resetButton_Click"/>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,5 @@
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高\ParkingSolver\obj\Debug\ParkingSolver.csprojResolveAssemblyReference.cache
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高\ParkingSolver\bin\Debug\ParkingSolver.dll
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高\ParkingSolver\bin\Debug\ParkingSolver.pdb
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高\ParkingSolver\obj\Debug\ParkingSolver.dll
+C:\Users\loveright\Documents\Visual Studio 2013\Projects\乐高\ParkingSolver\obj\Debug\ParkingSolver.pdb
